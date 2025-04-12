@@ -25,7 +25,7 @@ source .venv/bin/activate
 ### 3. Install Dependencies
 
 ```bash
-pip install faker pandas numpy kafka-python pyspark fastapi uvicorn python-dotenv polars scikit-learn matplotlib joblib tensorflow pydantic streamlit
+pip install faker pandas numpy kafka-python pyspark fastapi uvicorn python-dotenv polars scikit-learn matplotlib joblib tensorflow pydantic streamlit google-generativeai
 ```
 
 ---
@@ -78,29 +78,13 @@ Generated folders:
 
 ---
 
-## 🔗 Combine and Process Data
-
-### 7. Update Paths in combine.py
-
-Replace these lines in `combine.py` with your system’s absolute paths:
-
-```python
-df_customers = spark.read.parquet("/absolute/path/to/parquet/customers").withColumnRenamed("created_at", "created_at_cust")
-
-df_accounts = spark.read.parquet("/absolute/path/to/parquet/accounts").withColumnRenamed("account_type", "account_type_acct").withColumnRenamed("created_at", "created_at_acct")
-
-df_transactions = spark.read.parquet("/absolute/path/to/parquet/transactions").withColumnRenamed("account_type", "account_type_txn")
-```
-
----
-
 ## 🚀 Launch the FastAPI Server
 
-### 8. Run API Server
+### 7. Run API Server
 
 ```bash
 cd ..
-uvicorn api:app --reload
+python3 run.py
 ```
 
 Example Output:
@@ -118,31 +102,15 @@ Example Output:
 
 ---
 
-## 🧠 Train Autoencoder Model
-
-### 9. Train the Model for Drift Monitoring
-
-```bash
-cd modules/
-python3 train_autoencoder.py
-```
-
-This will output the training progress and create:
-
-- `fraud_autoencoder_model.h5`
-- `fraud_preprocessor.pkl`
-- `fraud_threshold.txt`
-
----
-
 ## 📬 Configure Email Alerts
 
-### 10. Create `.env` File in `modules/` Folder
+### 8. Create `.env` File in `modules/` Folder
 
 ```env
 EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_16_character_app_password
 TO_EMAIL=recipient_email@gmail.com
+GEMINI_API_KEY=your_gemini_key
 ```
 
 To generate the app password:
@@ -151,11 +119,19 @@ To generate the app password:
 2. Select **Mail** and **Other (e.g., "Streamlit Drift")**  
 3. Copy the 16-character password and paste it into `.env`
 
+To generate free gemini key:
+
+1. Go to https://aistudio.google.com/apikey
+2. Select **Create API Key**
+3. Select a project from your existing Google Cloud projects 
+4. Click **Create API Key in existing project**
+5. Copy the key and paste it into `.env`
+
 ---
 
 ## 📉 Monitor Drift & Auto Retrain
 
-### 11. Run Streamlit Dashboard
+### 9. Run Streamlit Dashboard
 
 ```bash
 streamlit run monitor_drift.py
