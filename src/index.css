@@ -1,0 +1,74 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 15%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 196 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 25%;
+    --muted-foreground: 215 20.2% 75.1%;
+
+    --accent: 196 100% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 30%;
+    --input: 217 33% 30%;
+    --ring: 196 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 222 47% 12%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-primary: 196 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 20%;
+    --sidebar-accent-foreground: 213 31% 91%;
+    --sidebar-border: 222 47% 20%;
+    --sidebar-ring: 196 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-zinc-700;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, rgba(0, 24, 43, 0.9) 0%, rgba(0, 47, 85, 0.9) 100%);
+}
+
+/* Update these class definitions to use direct color values instead of theme function */
+.fraud-risk-low {
+  color: #38bdf8;
+}
+
+.fraud-risk-medium {
+  color: #fb923c;
+}
+
+.fraud-risk-high {
+  color: #ef4444;
+}
